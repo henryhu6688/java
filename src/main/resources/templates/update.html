@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>update title</title>
+</head>
+<body>
+<form action="/user/updateAction" method="post">
+    <table cellpadding="0px" cellspacing="0px" border="1px" width="50%">
+        <tr>
+            <td>商品编号</td>
+            <td><input type="text" th:value="${user.pro_num}" name="pro_num"></td>
+        </tr>
+        <tr>
+            <td>商品名称</td>
+            <td><input type="text" th:value="${user.pro_name}" name="pro_name"></td>
+        </tr>
+        <tr>
+            <td>商品类别</td>
+            <td><input type="text" th:value="${user.pro_kind}" name="pro_kind"></td>
+        </tr>
+        <tr>
+            <td>生产商</td>
+            <td><input type="text" th:value="${user.pro_factory}" name="pro_factory"></td>
+        </tr>
+        <tr>
+            <td>商品价格</td>
+            <td><input type="text" th:value="${user.pro_price}" name="pro_price"></td>
+        </tr>
+
+        <tr>
+            <td><input type="submit" value="提交"></td>
+            <td><input type="reset" value="重置"></td>
+        </tr>
+        <tr>
+
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>

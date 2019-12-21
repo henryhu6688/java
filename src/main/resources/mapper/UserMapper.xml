@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.javaweb.mapper.UserMapper">
+
+  <resultMap id="BaseResultMap" type="com.example.javaweb.entity.User">
+    <id column="id" property="id" jdbcType="INTEGER"/>
+    <result column="username" property="username" jdbcType="VARCHAR"/>
+    <result column="password" property="password" jdbcType="VARCHAR"/>
+    <result column="phone" property="phone" jdbcType="INTEGER"/>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+        username,
+        password,
+        phone,
+        key1
+    </sql>
+
+  <select id="userlogin" parameterType="user" resultType="User">
+        SELECT username,password,phone,key1 FROM logintable WHERE username = #{username} AND password = #{password}
+    </select>
+
+  <!--新用户注册  方式1-->
+  <insert id="adduser" parameterType="user" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO logintable (username,password,phone,key1)
+         VALUES (${username},${password},${phone},${key1})
+    </insert>
+
+  <insert id="addemp" parameterType="user" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO main_table (pro_num,pro_name,pro_kind,pro_factory,pro_price)
+        VALUES (${pro_num},${pro_name},${pro_kind},${pro_factory},${pro_price})
+    </insert>
+
+    <insert id="probuy1" parameterType="user" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO pro_table (pro_num,pro_name,pro_amount,pro_price,pro_money)
+        VALUES (${pro_num},${pro_name},${pro_amount},${pro_price},${pro_money});
+    </insert>
+
+  <select id="queryAllUser" resultType="map">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM logintable
+  </select>
+
+</mapper>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>工资管理系统</title>
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/htmleaf-demo.css">
+
+    <link rel="stylesheet" href="/css/animate.min.css"/>
+    <link rel="stylesheet" href="/css/syalert.min.css"/>
+
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script src="/js/syalert.min.js"></script>
+    <style type="text/css">
+    </style>
+
+
+</head>
+<body>
+
+<div class="htmleaf-container">
+    <header class="htmleaf-header">
+        <h1>商城系统 <span>管理员界面</span></h1>
+        <div class="htmleaf-links">
+            <a class="htmleaf-icon icon-htmleaf-home-outline" href="/user/index" title="返回登录"><span> 返回登录</span></a>
+            <a class="htmleaf-icon icon-htmleaf-arrow-forward-outline" href="/user/empfind" title="查询"><span> 查询</span></a>
+        </div>
+    </header>
+
+    <div style="margin:auto; width:80%;padding:2em 0;">
+        <h3>商品信息编辑</h3>
+        <div style="margin-bottom:10px;">
+            <input type="button" onClick="syalert.syopen('alert4')" value="添加商品信息" class="btn btn-default">
+        </div>
+
+        <table cellspacing="0" cellpadding="0" width="100%" border="1px">
+            <tr>
+                <th>商品编号</th>
+                <th>商品名称</th>
+                <th>商品类别</th>
+                <th>生产商</th>
+                <th>商品价格</th>
+                <th>修改</th>
+                <th>删除</th>
+            </tr>
+            <tr th:each="user:${users}">
+                <td th:text="${user.pro_num}"></td>
+                <td th:text="${user.pro_name}"></td>
+                <td th:text="${user.pro_kind}"></td>
+                <td th:text="${user.pro_factory}"></td>
+                <td th:text="${user.pro_price}"></td>
+                <td><a th:href="@{'/user/update?pro_name=' + ${user.pro_name}}">修改</a></td>
+                <td><a th:href="@{'/user/delete?pro_name=' + ${user.pro_name}}">删除</a></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+<!-- 自定义弹窗 -->
+<form action="/user/main_index1" method="post">
+    <div class="sy-alert sy-alert-model animated" sy-enter="zoomIn" sy-leave="zoomOut" sy-type="confirm" sy-mask="true"
+         id="alert4">
+        <div class="sy-title">信息录入</div>
+        <div class="sy-content">
+            <div class="form">
+                <p class="input-item"><input type="text" name=pro_num placeholder="请输入商品编号"/></p>
+                <p class="input-item"><input type="text" name=pro_name placeholder="请输入商品名称"/></p>
+                <p class="input-item"><input type="text" name=pro_kind placeholder="请输入商品类别"/></p>
+                <p class="input-item"><input type="text" name=pro_factory placeholder="请输入生产商"/></p>
+                <p class="input-item"><input type="text" name=pro_price placeholder="请输入商品价格"/></p>
+            </div>
+        </div>
+        <div class="sy-btn">
+            <button id="fal">取消</button>
+            <button onClick="ok('alert4')" id="correct">确定</button>
+        </div>
+    </div>
+</form>
+<script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery-1.11.0.min.js"><\/script>')</script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/raydreams.js"></script>
+<script src="/js/data.js"></script>
+<script type="text/javascript">
+
+    // the data table itself
+
+    // load some data
+
+    var submitBtn = document.getElementById("fal");
+
+    submitBtn.onclick = function (event) {
+        syalert.syhide('alert4')
+        return false;//此处return false;即不会提交表单，一般验证表单数据不符合要求使用
+    };
+</script>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>工资管理系统</title>
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/htmleaf-demo.css">
+
+    <link rel="stylesheet" href="/css/animate.min.css"/>
+    <link rel="stylesheet" href="/css/syalert.min.css"/>
+
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script src="/js/syalert.min.js"></script>
+    <style type="text/css">
+    </style>
+
+
+</head>
+<body>
+
+<div class="htmleaf-container">
+    <header class="htmleaf-header">
+        <h1>商城系统 <span>用户界面</span></h1>
+        <div class="htmleaf-links">
+            <a class="htmleaf-icon icon-htmleaf-home-outline" href="/user/index" title="返回登录"><span> 返回登录</span></a>
+            <a class="htmleaf-icon icon-htmleaf-arrow-forward-outline" href="/user/emplook"
+               title="返回主界面"><span> 返回主界面</span></a>
+        </div>
+    </header>
+
+    <div style="margin:auto; width:80%;padding:2em 0;">
+        <h3>购物车</h3>
+        <form action="/user/cart" method="POST">
+            <table cellspacing="0" cellpadding="0" width="100%" border="1px">
+                <tr>
+                    <th>商品编号</th>
+                    <th>商品名称</th>
+                    <th>购买数量</th>
+                    <th>商品单价</th>
+                    <th>商品总价</th>
+                    <th>删除</th>
+                </tr>
+                <tr th:each="user:${users}">
+                    <td th:text="${user.pro_num}"></td>
+                    <td th:text="${user.pro_name}"></td>
+                    <td th:text="${user.pro_amount}"></td>
+                    <td th:text="${user.pro_price}"></td>
+                    <td th:text="${user.pro_money}"></td>
+                    <td><a th:href="@{'/user/delete1?pro_money=' + ${user.pro_money}}">删除</a></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <input type="button" value="付款" />
+</div>
+<!-- 自定义弹窗 -->
+
+<script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery-1.11.0.min.js"><\/script>')</script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/raydreams.js"></script>
+<script src="/js/data.js"></script>
+<script type="text/javascript">
+
+    // the data table itself
+
+    // load some data
+
+    var submitBtn = document.getElementById("fal");
+
+    submitBtn.onclick = function (event) {
+        syalert.syhide('alert4')
+        return false;//此处return false;即不会提交表单，一般验证表单数据不符合要求使用
+    };
+</script>
+
+</body>
+</html>
